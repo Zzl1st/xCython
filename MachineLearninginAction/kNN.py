@@ -85,7 +85,11 @@ def classifyPerson():
     datingDataMat,datingLabels = file2matrix('datingTestSet2.txt')
     normMat, ranges, minVals = autoNorm(datingDataMat)
     inArr = array([ffMiles,percentTats,iceCream])
+<<<<<<< HEAD
     classifierResult = classify0((inArr-minVals)/ranges,normMat,datingLabels,4)
+=======
+    classifierResult = classify0((inArr-minVals)/ranges,normMat,datingLabels,3)
+>>>>>>> 09b1a310b60243ba7b8c610858781d95cbaa7806
     print "you will probably like this person:",resultList[classifierResult - 1]
     
 def img2vector(filename):

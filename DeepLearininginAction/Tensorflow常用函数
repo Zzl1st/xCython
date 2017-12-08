@@ -15,7 +15,7 @@ tf.GraphKeys.MOVING_AVERAGE_VARIABLES   #所有计算了滑动平均值的变量
 result.get_shape()   #获取结果张量的维度信息
 tf.Tensor.eval()     #计算一个张量的取值
 tf.InteractiveSession()   #自动将生成的会话注册为默认会话
-tf.matmul(x,y)       #矩阵乘法
+tf.matmul(x,y)       #矩阵乘法，是矩阵之间的计算，而×是矩阵元素之间的直接相乘
 tf.Variable          #保存和更新神经网络中的参数,且一个变量的值在被使用之前，需要被初始化
 
 #Tensorflow中常见的随机数生成函数
@@ -39,3 +39,20 @@ tf.sigmoid
 tf.tanh
 eg:a = tf.nn.relu(tf.matmul(x, w1) + biases1)
 
+tf.clip_by_value         #将一个张量中的数值限制在一个范围之内
+tf.log                   #将张量中的所有元素依次取对数
+tf.reduce_mean		 #计算平均数
+tf.nn.softmax_cross_entropy_with_logits(y, y_)    #实现使用了softmax回归之后的交叉熵损失函数,其中y表示原始神经网络的输出结果，y_表示标准答案
+#当分类问题只有一个正确答案时可以使用
+tf.nn.sparse_softmax_cross_entropy_with_logits(y, y_)
+
+tf.greater   #输入两个张量，比较这两个张量中每一个元素的大小，并返回比较结果
+tf.where(以前叫tf.select)    #有三个参数，第一个为选择条件依据，当为True时，选择第二个参数的值，反之第三个
+tf.train.exponential_dacay（0.1,global_step,100,0.96,staircase = True)    #实现了指数衰减学习率,初始学习率0.1,每训练100轮后学习率乘以0.96
+
+tf.contrib.layers.l2_regularizer #返回一个函数，这个函数可以计算一个给定参数的L2正则化项的值
+tf.contrib.layers.l1_regularizer #返回一个函数，这个函数可以计算一个给定参数的L1正则化项的值
+tf.train.ExponentialMovingAverage  #实现滑动平均模型
+
+input_data.read_data_sets   #自动将Mnist数据集划分为train,validation,test三个数据集
+mnist.train.next_batch      #从所有的训练数据中读取一小部分作为一个训练batch

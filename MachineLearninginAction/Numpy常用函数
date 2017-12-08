@@ -1,3 +1,5 @@
 tile()      #将变量内容复制成与输入矩阵同等大小的矩阵，这是具体的特征值相除
 linalg.solve(matA,matB)   #进行矩阵除法
 from os import listdir    #从os模块中导入函数listdir，可以列出给定目录的文件名
+
+
