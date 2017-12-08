@@ -1,0 +1,30 @@
+import tensorflow as tf
+
+#初始权值的设置
+w1 = []
+w1[0][0] = 0.2
+w1[0][1] = -0.3
+w1[1][0] = 0.4
+w1[1][1] = 0.1
+w1[2][0] = -0.5
+w1[2][1] = 0.2
+
+w2 = []
+w2[0][0] = -0.3
+w1[1][0] = -0.2
+
+#初始偏置的设置
+bias1 = []
+bias1[0][0] = -0.4
+bias2[1][0] = 0.2
+
+bias2 = []
+bias2[0][0] = 0.1
+
+#定义前向传播算法
+a = tf.nn.sigmoid(tf.matmul(x,w1)+bias1)
+y = tf.nn.sigmoid(tf.matmul(a,w2)+bias2)
+
+
+
+

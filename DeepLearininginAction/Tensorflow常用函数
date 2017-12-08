@@ -1,0 +1,41 @@
+tf.get_default_graph() #获取当前默认的计算图
+tf.Graph()             #生成新的计算图
+tf.add_to_collection() #将资源加入一个或多个集合中
+tf,get_collection()    #获取一个集合里面的所有资源
+
+#Tensorflow中维护的集合变量
+tf.GraphKeys.VARIABLES   #所有变量都会被自动地加入到这个集合变量中，用于持久化Tensorflow模型;且我们可以通过设置参数trainable的值来决定变量是否能被优化，如果是，则会被加入GraphKeys.TRAINABLE_VARIABLES集合，这个集合也是TF中默认的优化对象
+tf.trainable_variables   #得到所有需要优化的参数
+
+tf.GraphKeys.TRAINABLE_VARIABLEs   #可学习的变量（一般指神经网络中的参数），用于模型训练/生成模型可视化内容
+tf.GraphKeys.SUMMARIES   #日志生成相关的张量，用于计算可视化
+tf.GraphKeys.QUEUE_RUNNERS  #处理输入的QueueRunner，用于输出处理
+tf.GraphKeys.MOVING_AVERAGE_VARIABLES   #所有计算了滑动平均值的变量，用于计算变量的滑动平均值
+
+result.get_shape()   #获取结果张量的维度信息
+tf.Tensor.eval()     #计算一个张量的取值
+tf.InteractiveSession()   #自动将生成的会话注册为默认会话
+tf.matmul(x,y)       #矩阵乘法
+tf.Variable          #保存和更新神经网络中的参数,且一个变量的值在被使用之前，需要被初始化
+
+#Tensorflow中常见的随机数生成函数
+tf.random_normal     #正态分布
+tf.truncated_normal  #正态分布，但如果随机出来的值偏离平均值超过2个标准差，将被重新随机
+tf.random_uniform    #均匀分布
+tf.random_gamma      #Gamma分布
+
+#Tensorflow中常见的常数生成函数
+tf.zero
+tf.ones
+tf.fill
+tf.constant
+
+tf.global_variables_initializer   #[新]实现初始化所有变量的过程
+feed_dict                         #字典，用于给placeholder指定取值
+
+#几种常用的非线性激活函数
+tf.nn.relu
+tf.sigmoid
+tf.tanh
+eg:a = tf.nn.relu(tf.matmul(x, w1) + biases1)
+
