@@ -1,7 +1,7 @@
 tf.get_default_graph() #获取当前默认的计算图
 tf.Graph()             #生成新的计算图
 tf.add_to_collection() #将资源加入一个或多个集合中
-tf,get_collection()    #获取一个集合里面的所有资源
+tf.get_collection()    #获取一个集合里面的所有资源
 
 #Tensorflow中维护的集合变量
 tf.GraphKeys.VARIABLES   #所有变量都会被自动地加入到这个集合变量中，用于持久化Tensorflow模型;且我们可以通过设置参数trainable的值来决定变量是否能被优化，如果是，则会被加入GraphKeys.TRAINABLE_VARIABLES集合，这个集合也是TF中默认的优化对象
@@ -56,3 +56,36 @@ tf.train.ExponentialMovingAverage  #实现滑动平均模型
 
 input_data.read_data_sets   #自动将Mnist数据集划分为train,validation,test三个数据集
 mnist.train.next_batch      #从所有的训练数据中读取一小部分作为一个训练batch
+
+#inference函数可以把整个前向传播的过程抽象为一个函数，里面的参数包含了神经网络中所有的参数，但是一旦变量增多，存储不便，需要找到新的解决方法。
+def inference(input_tensor,avg_class,weights1,biases1,weights2,biases2):
+
+#通过一以下两个函数来完成“通过变量名获取变量的机制”
+tf.get_variable #创建或者获取变量，变量名称是一个必填的参数，函数会根据这个名字去创建或者获取变量
+举例：v = tf.get_variable("v",shape = [1],initializer = tf.constant_initializer(1.0))
+     v =tf.Variable(tf.constant(1.0,shape[1],name="v")
+tf.variable_scope  #来生成一个上下文管理器，并明确指定在这个上下文管理器中，tf.get_variable将直接获取已经
+                   #生成的变量
+
+
+#TensorFlow中的变量初始化函数
+tf.constant_initializer #将变量初始化为给定常量，主要参数是常量的取值
+tf.random_normal_initializer  #将变量初始化为满足正态分布的随机值，主要参数是正态分布的均值和标准差
+tf.truncated_normal_initializer  #将变量初始化为满足正态分布的随机值，但如果随机出来的值偏离平均值超过两个
+                                 #标准差，那么这个数将被重新随机
+tf.random_uniform_initializer #将变量初始化为满足平均分布的随机值，主要参数为最大/最小值
+tf.uniform_unit_initializer #将变量初始化为满足平均分布但不影响输出数量级的随机值，主要参数是factor(产生随机
+                            #值时乘以的系数）
+tf.zeros_initializer        #将变量设置为全0,主要参数是变量的维度
+tf.ones_initializer         #将变量设置为全1,主要参数是变量的维度
+
+tf.train.Saver
+
+#为了方便加载时重命名滑动平均变量，tf.train.ExponentialMovingAverage提供了
+variables_to_restore函数来生成tf.train.Saver类所需要的变量重命名字典
+
+convert_variables_to_constant  #将计算图中的变量及其取值通过常量的方式保存，这样就能将整个TF计算图统一放在一
+                               #个文件中
+export_meta_graph              #支持以json格式导出MetaGraphDef Protocol Buffer,eg:
+                               #saver = tf.train.Saver()
+                               #saver.export_meta_graph("/path/.../model.ckpt.meta.json",as_text = True)

@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/xu/\346\241\214\351\235\242/xu/5.4.1/ModelText.ckpt"
+all_model_checkpoint_paths: "/home/xu/\346\241\214\351\235\242/xu/5.4.1/ModelText.ckpt"
