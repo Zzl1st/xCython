@@ -1,0 +1,6 @@
+model_checkpoint_path: "/home/xu/\346\241\214\351\235\242/xu/DeepLearininginAction/mnist_100000/mnist_model.ckpt-49501"
+all_model_checkpoint_paths: "/home/xu/\346\241\214\351\235\242/xu/DeepLearininginAction/mnist_100000/mnist_model.ckpt-47501"
+all_model_checkpoint_paths: "/home/xu/\346\241\214\351\235\242/xu/DeepLearininginAction/mnist_100000/mnist_model.ckpt-48001"
+all_model_checkpoint_paths: "/home/xu/\346\241\214\351\235\242/xu/DeepLearininginAction/mnist_100000/mnist_model.ckpt-48501"
+all_model_checkpoint_paths: "/home/xu/\346\241\214\351\235\242/xu/DeepLearininginAction/mnist_100000/mnist_model.ckpt-49001"
+all_model_checkpoint_paths: "/home/xu/\346\241\214\351\235\242/xu/DeepLearininginAction/mnist_100000/mnist_model.ckpt-49501"
