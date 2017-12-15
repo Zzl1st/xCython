@@ -2,7 +2,11 @@ tf.get_default_graph() #获取当前默认的计算图
 tf.Graph()             #生成新的计算图
 tf.add_to_collection() #将资源加入一个或多个集合中
 tf.get_collection()    #获取一个集合里面的所有资源
-tf.get_variable(shape,regularizer)  #获取变量
+tf.get_variable(<name>,<shape>,<initializer>)  #通过所给的名字创建或是返回一个变量
+#以下有一些在TF中使用的初始化变量
+tf.constant_initializer(value) #初始化一切所提供的值
+tf.random_uniform_initializer(a,b) #从a到b均匀初始化
+tf.random_normal_initializer(mean,stddev) #用所给的平均值和标准差初始化均匀分布
 
 #Tensorflow中维护的集合变量
 tf.GraphKeys.VARIABLES   #所有变量都会被自动地加入到这个集合变量中，用于持久化Tensorflow模型;且我们可以通过设置参数trainable的值来决定变量是否能被优化，如果是，则会被加入GraphKeys.TRAINABLE_VARIABLES集合，这个集合也是TF中默认的优化对象
@@ -35,7 +39,11 @@ tf.global_variables_initializer   #[新]实现初始化所有变量的过程
 feed_dict                         #字典，用于给placeholder指定取值
 
 #几种常用的非线性激活函数
-tf.nn.relu
+tf.nn.relu   #去线性化，使得输出的结果非线性化
+tf.nn.conv2d( , , , ,) #实现卷积层的前向传播，有四个参数，具体见P146
+tf.nn.bias_add    #给每一个节点加上偏置项，例子：tf.nn.bias_add(conv,biases)
+tf.nn.max_pool  #实现了最大池化层的前向传播算法，它的参数和tf.nn.conv2d类似
+
 tf.sigmoid
 tf.tanh
 eg:a = tf.nn.relu(tf.matmul(x, w1) + biases1)
@@ -66,14 +74,14 @@ tf.get_variable #创建或者获取变量，变量名称是一个必填的参数
 举例：v = tf.get_variable("v",shape = [1],initializer = tf.constant_initializer(1.0))
      v =tf.Variable(tf.constant(1.0,shape[1],name="v")
 tf.variable_scope  #来生成一个上下文管理器，并明确指定在这个上下文管理器中，tf.get_variable将直接获取已经
-                   #生成的变量
+                   #生成的变量，通过使用不同的名字来隔离不同层的变量，这可以让每一层中的变量命名只需要考虑
+                   #在当前层的作用
 
 
 #TensorFlow中的变量初始化函数
 tf.constant_initializer #将变量初始化为给定常量，主要参数是常量的取值
 tf.random_normal_initializer  #将变量初始化为满足正态分布的随机值，主要参数是正态分布的均值和标准差
-tf.truncated_normal_initializer  #将变量初始化为满足正态分布的随机值，但如果随机出来的值偏离平均值超过两个
-                                 #标准差，那么这个数将被重新随机
+tf.truncated_normal_initializer(stddev = 0.1)  #将变量初始化为满足正态分布的随机值，但如果随机出来的值偏离平均值超过两个标准差，那么这个数将被重新随机
 tf.random_uniform_initializer #将变量初始化为满足平均分布的随机值，主要参数为最大/最小值
 tf.uniform_unit_initializer #将变量初始化为满足平均分布但不影响输出数量级的随机值，主要参数是factor(产生随机
                             #值时乘以的系数）
@@ -91,7 +99,14 @@ export_meta_graph              #支持以json格式导出MetaGraphDef Protocol B
                                #saver = tf.train.Saver()
                                #saver.export_meta_graph("/path/.../model.ckpt.meta.json",as_text = True)
 
+slim.arg_scope #可以用于设置默认的参数取值，第一个参数是一个函数列表，在这个列表上，在
+	       #这个列表中的函数将使用默认的参数取值
+               #例：调用slim.conv2d(net,320,[1.1])函数时会自动加上stride=1和padding='SAME'的参数
+               #如果在函数调用时指定了stride，那么这里设置的默认值就不会再使用
 
+tf.concat   #可以将多个矩阵拼接起来，第一个参数指定了拼接的维度，以下的‘3’代表了矩阵是在深度这个维度上
+            #进行拼接的，而不是其他的长度和宽度维度
 
+tensor.name  #获取张量的名称
 
 
