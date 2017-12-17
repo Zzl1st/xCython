@@ -10,7 +10,7 @@ import os.path
 import random
 import numpy as np
 import tensorflow as tf
-from tensoflow.python.platform import gfile
+from tensorflow.python.platform import gfile
 
 #Inception-v3模型瓶颈层的节点个数
 BOTTLENECK_TENSOR_SIZE = 2048
