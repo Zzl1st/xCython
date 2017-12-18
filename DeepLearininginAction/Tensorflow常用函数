@@ -109,6 +109,7 @@ tf.concat   #可以将多个矩阵拼接起来，第一个参数指定了拼接�
 
 tensor.name  #获取张量的名称
 
+					        #调整图像的大小#
 tf.image.resize_images #功能是调整图像的大小，第一个参数是原始图像，第二个和第三个参数为调整后的图像大小
                        #method参数给出了调整图像大小的算法
                        #method取值0采用双线性插值法
@@ -121,3 +122,42 @@ tf.image.resize_image_with_crop_or_pad   #调整图像的大小，其中，第�
                                          #在原始图像的四周填充全0背景
 
 tf.image.central_crop            #按比例裁剪图像，第一个参数为原始图像，第二个为调整比例
+
+						#图像翻转#
+#将图像上下翻转
+flipped = tf.image.flip_up_down(img_data)
+#将图像左右翻转
+flipped = tf.image.flip_left_right(img_data)
+#将图像沿对角线翻转
+flipped = tf.image.transpose_image(img_data)
+	
+						#随机图像翻转#
+#以一定概率上下翻转图像#
+flipped = tf.image.random_flip_up_down(img_data)
+#以一定的概率左右翻转图像#
+flipped = tf.image.random_flip_left_right(img_data)
+                                                #图像色彩调整#
+#将图像的亮度-0.5
+adjusted = tf.image.adjust_brightness(img_data,-0.5)
+#将图像的亮度+0.5
+adjusted = tf.image.adjust_brightness(img_data,+0.5)
+#在[-max_delta,max_delta]的范围内随机调整图像的亮度
+adjusted = tf.image.random_brightness(image,max_delta)
+                                                #图像的对比度#
+#将图像的对比度-5
+adjusted = tf.image.adjust_contrast(img_data,-5)
+#在[lower,upper]的范围随机调整图的对比度
+adjusted = tf.image.random_contrast(image,lower,upper)
+                                                #图形的色相调整#
+#色相加上0.1#
+adjusted = tf.image.adjust_hue(image_data,0.1)
+#在[-max_delta,max_delta]的范围随机调整图像的色相
+#max_delta的取值在[0,0.5]之间
+adjusted = tf.image.random_hue(image,max_delta)
+                                                #调整图像的饱和度#
+#将图像的饱和度-5
+adjusted = tf.image.random.adjust_saturation(img_data,-5)
+#在[lower,upper]的范围随机调整图的饱和度
+adjusted = tf.image.random_saturation(image,lower,upper)
+                                                #图像的标准化（亮度均值为0，方差为1）#
+adjusted = tf.image.per_image_whitening(img_data)
