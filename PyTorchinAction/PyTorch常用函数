@@ -1,0 +1,16 @@
+#Tensor
+torch.FloatTensor #32位浮点型
+torch.DoubleTensor#64位浮点型
+torch.ShortTensor #16位整型
+torch.IntTensor   #32位整型
+torch.LongTensor  #64位
+format(a)         #返回张量a的数据类型
+
+torch.matmul      #矩阵乘法
+tensor.size()     #获取tensor的大小
+tensor.type()     #获取tensor的类型
+tensor.dim()     #获取tensor的维度
+
+
+
+
